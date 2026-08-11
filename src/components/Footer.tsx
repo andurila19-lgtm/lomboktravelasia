@@ -94,7 +94,7 @@ export default function Footer() {
             <ul className="space-y-2 text-xs text-zinc-300 font-light">
               <li className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-[#c5a880] shrink-0 mt-0.5" />
-                <span>Senggigi, Lombok, NTB, Indonesia</span>
+                <span>Lombok, NTB, Indonesia</span>
               </li>
               <li className="flex items-center gap-2">
                 <MessageCircle className="w-4 h-4 text-[#c5a880] shrink-0" />

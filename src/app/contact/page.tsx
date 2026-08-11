@@ -252,7 +252,7 @@ export default function ContactPage() {
               </h4>
               <p className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-[#3f6653] shrink-0 mt-0.5" />
-                <span>Senggigi, Lombok, West Nusa Tenggara, Indonesia</span>
+                <span>Lombok, West Nusa Tenggara, Indonesia</span>
               </p>
               <p className="flex items-center gap-2">
                 <MessageCircle className="w-4 h-4 text-[#3f6653] shrink-0" />

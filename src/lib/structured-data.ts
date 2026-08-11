@@ -152,7 +152,7 @@ export function generateLocalBusinessSchema(locale: Locale) {
     image: `${SITE_URL}/images/logo.png`,
     address: {
       '@type': 'PostalAddress',
-      addressLocality: 'Senggigi',
+      addressLocality: 'Lombok',
       addressRegion: 'West Nusa Tenggara',
       addressCountry: 'ID',
       postalCode: '83355',

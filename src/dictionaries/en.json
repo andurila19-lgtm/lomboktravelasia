@@ -110,7 +110,7 @@
   },
   "about": {
     "pageTitle": "Local Travel Experiences in Lombok",
-    "storyText": "Lombok Travel Asia is a local travel team based in Senggigi, Lombok. We assist travelers with guided trekking trips, island excursions, coastal tours, and custom itineraries.",
+    "storyText": "Lombok Travel Asia is a local travel team based in Lombok. We assist travelers with guided trekking trips, island excursions, coastal tours, and custom itineraries.",
     "whyChooseUs": "Why Choose Us",
     "localExpertise": "Local Experience",
     "localExpertiseDesc": "Our team is composed of Lombok natives who know island routes, mountain trails, and local coastal conditions.",
@@ -124,9 +124,9 @@
     "consultantQuote": "Curating authentic travel itineraries designed around your schedule and interests across Lombok and the Gili Islands.",
     "ourMission": "Our Mission",
     "missionText": "To provide reliable, well-organized travel experiences that connect guests with the nature, culture, and outdoor activities of Lombok.",
-    "visitOffice": "Visit Our Office",
-    "officeLabel": "Lombok Travel Asia HQ",
-    "officeAddress": "Senggigi, Lombok, West Nusa Tenggara, Indonesia"
+    "visitOffice": "Contact Our Team",
+    "officeLabel": "Lombok Travel Asia",
+    "officeAddress": "Lombok, West Nusa Tenggara, Indonesia"
   },
   "contact": {
     "overline": "Contact Us",
@@ -143,7 +143,7 @@
     "formDestination": "Destination of Interest",
     "formMessage": "Your Message or Special Requests",
     "formSubmit": "Send Inquiry",
-    "formSuccess": "Thank you! Your inquiry has been sent. We'll get back to you via WhatsApp shortly.",
+    "formSuccess": "Thank you! Your inquiry has been prepared. Connecting you to WhatsApp...",
     "formError": "Something went wrong. Please try again or contact us directly via WhatsApp.",
     "formRequired": "This field is required",
     "formInvalidEmail": "Please enter a valid email address",
@@ -156,10 +156,10 @@
     "destSouth": "South Lombok Beaches",
     "destCultural": "Cultural Tour",
     "destCustom": "Custom Itinerary",
-    "ourOffice": "Our Office"
+    "ourOffice": "Our Team"
   },
   "footer": {
-    "description": "Your trusted local partner for authentic Lombok travel experiences. From volcano treks to island escapes, we craft journeys that matter.",
+    "description": "Explore Lombok through curated travel experiences.",
     "quickLinks": "Quick Links",
     "destinations": "Destinations",
     "contactUs": "Contact Us",
