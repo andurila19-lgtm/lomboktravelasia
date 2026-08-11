@@ -421,6 +421,25 @@ export default function TourDetailPage() {
           </div>
         </div>
       </div>
+
+      {/* STICKY BOTTOM MOBILE BOOKING BAR */}
+      <div className="fixed bottom-0 inset-x-0 z-40 sm:hidden bg-[#012d1d]/95 backdrop-blur-xl border-t border-[#86af99]/30 p-3.5 flex items-center justify-between shadow-2xl">
+        <div className="flex flex-col text-left">
+          <span className="text-[10px] uppercase font-bold text-[#86af99]">Starting From</span>
+          <span className="text-base font-bold text-white">
+            {formatCurrency(tour.price.amount, tour.price.currency)}
+          </span>
+        </div>
+        <a
+          href={waUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-6 py-2.5 rounded-full bg-[#25D366] text-black font-bold text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg"
+        >
+          <MessageCircle className="w-4 h-4 fill-current text-black" />
+          <span>Book Now</span>
+        </a>
+      </div>
     </div>
   );
 }

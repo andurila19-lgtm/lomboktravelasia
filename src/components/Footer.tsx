@@ -136,8 +136,28 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Client Trust Badges for Pitch Demonstration */}
+        <div className="py-8 my-4 border-y border-white/10 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          <div className="flex flex-col items-center gap-1">
+            <span className="text-xs font-bold text-[#c5a880] uppercase tracking-wider">✓ Certified Guides</span>
+            <span className="text-[11px] text-zinc-400 font-light">100% licensed local experts</span>
+          </div>
+          <div className="flex flex-col items-center gap-1">
+            <span className="text-xs font-bold text-[#c5a880] uppercase tracking-wider">✓ Official Operator</span>
+            <span className="text-[11px] text-zinc-400 font-light">Licensed Lombok Tour Agency</span>
+          </div>
+          <div className="flex flex-col items-center gap-1">
+            <span className="text-xs font-bold text-[#c5a880] uppercase tracking-wider">✓ Instant WA Booking</span>
+            <span className="text-[11px] text-zinc-400 font-light">24/7 direct concierge chat</span>
+          </div>
+          <div className="flex flex-col items-center gap-1">
+            <span className="text-xs font-bold text-[#c5a880] uppercase tracking-wider">✓ Flexible Guarantees</span>
+            <span className="text-[11px] text-zinc-400 font-light">Transparent booking terms</span>
+          </div>
+        </div>
+
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between text-xs text-zinc-400 gap-4">
+        <div className="pt-4 flex flex-col md:flex-row items-center justify-between text-xs text-zinc-400 gap-4">
           <p>© {new Date().getFullYear()} {dict.footer.copyright}</p>
           <p className="flex items-center gap-1">
             Handcrafted with <Heart className="w-3.5 h-3.5 text-[#c5a880] fill-current" /> in Lombok

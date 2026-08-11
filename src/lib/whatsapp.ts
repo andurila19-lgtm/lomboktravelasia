@@ -1,6 +1,6 @@
 import type { Locale } from './i18n/config';
 
-const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '6200000000000';
+const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '6281912345678';
 
 const templates = {
   en: {
