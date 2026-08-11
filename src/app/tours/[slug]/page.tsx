@@ -360,7 +360,7 @@ export default async function TourDetailPage({ params }: TourPageProps) {
                   className="w-full py-4 rounded-full bg-[#25D366] text-black font-bold text-sm hover:bg-[#20bd5a] transition-all flex items-center justify-center gap-2 shadow-lg"
                 >
                   <MessageCircle className="w-5 h-5 fill-current" />
-                  <span>Ask on WhatsApp</span>
+                  <span>Ask About This Tour</span>
                 </a>
               </div>
 
@@ -419,7 +419,7 @@ export default async function TourDetailPage({ params }: TourPageProps) {
           className="px-6 py-2.5 rounded-full bg-[#25D366] text-black font-bold text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg"
         >
           <MessageCircle className="w-4 h-4 fill-current text-black" />
-          <span>WhatsApp Us</span>
+          <span>Ask About This Tour</span>
         </a>
       </div>
     </div>

@@ -14,7 +14,7 @@ import {
   Users,
   Calendar,
   ShieldCheck,
-  Award,
+  UserCheck,
   ArrowRight,
   MessageCircle,
 } from 'lucide-react';
@@ -223,7 +223,7 @@ export default function Home() {
 
             <div className="flex flex-col gap-3">
               <div className="w-10 h-10 rounded-full bg-[#eae7e7] flex items-center justify-center text-[#012d1d]">
-                <Award className="w-5 h-5" />
+                <UserCheck className="w-5 h-5" />
               </div>
               <h3 className="font-semibold text-xs sm:text-sm text-[#012d1d]">
                 {dict.home.proGuides}
@@ -357,7 +357,7 @@ export default function Home() {
                 className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#012d1d] text-white font-bold text-xs uppercase tracking-wider hover:bg-[#1b4332] transition-all shadow-xl flex items-center justify-center gap-2"
               >
                 <MessageCircle className="w-4 h-4 fill-current" />
-                <span>{dict.cta.requestCustomTrip}</span>
+                <span>{dict.cta.tellUsYourPlan}</span>
               </a>
               <Link
                 href="/contact"

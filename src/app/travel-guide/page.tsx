@@ -13,7 +13,7 @@ const articles = [
     excerpt:
       'Everything you need to know before climbing Indonesia’s second-highest volcano. FromSembalun vs Senaru routes to recommended fitness preparations.',
     category: 'Adventure Guide',
-    author: 'Maya - Senior Travel Consultant',
+    author: 'Lombok Travel Team',
     readTime: '8 min read',
     date: 'August 2026',
     image:

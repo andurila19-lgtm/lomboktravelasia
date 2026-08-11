@@ -7,7 +7,7 @@ import { Tour, getTourContent } from '@/content/tours';
 import { useLanguage } from './LanguageContext';
 import { getWhatsAppUrl } from '@/lib/whatsapp';
 import { formatCurrency } from '@/lib/utils';
-import { Star, Clock, MapPin, Users, ArrowUpRight, MessageCircle } from 'lucide-react';
+import { Clock, MapPin, Users, ArrowUpRight, MessageCircle } from 'lucide-react';
 
 interface TourCardProps {
   tour: Tour;
@@ -129,10 +129,10 @@ export default function TourCard({ tour }: TourCardProps) {
               target="_blank"
               rel="noopener noreferrer"
               className="px-3 py-2 rounded-full bg-[#062319] text-[#c5a880] hover:bg-[#c5a880] hover:text-[#062319] transition-all shadow-md flex items-center gap-1.5 text-xs font-bold"
-              title={locale === 'id' ? 'Tanya di WhatsApp' : 'Ask on WhatsApp'}
+              title={dict.cta.askAboutThisTour}
             >
               <MessageCircle className="w-3.5 h-3.5 fill-current" />
-              <span className="hidden sm:inline">{locale === 'id' ? 'Tanya' : 'Ask'}</span>
+              <span className="hidden sm:inline">{dict.cta.askAboutThisTour}</span>
             </a>
             <Link
               href={`/tours/${tour.slug}`}

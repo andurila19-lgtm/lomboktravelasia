@@ -232,7 +232,7 @@ export default function ContactPage() {
             <div className="bg-[#012d1d] text-white p-8 rounded-3xl border border-[#1b4332] shadow-xl space-y-6">
               <h3 className="font-serif text-2xl font-bold">Prefer Instant Messaging?</h3>
               <p className="text-xs text-zinc-300 leading-relaxed font-light">
-                Chat directly with our lead travel consultant on WhatsApp for instant trip advice, availability checks, and custom quotes.
+                Chat directly with our local Lombok travel team on WhatsApp for trip advice, availability checks, and custom itineraries.
               </p>
 
               <a
@@ -242,7 +242,7 @@ export default function ContactPage() {
                 className="w-full py-4 rounded-full bg-[#25D366] text-black font-bold text-sm hover:bg-[#20bd5a] transition-all flex items-center justify-center gap-2 shadow-lg"
               >
                 <MessageCircle className="w-5 h-5 fill-current" />
-                <span>{dict.contact.whatsappUs}</span>
+                <span>{dict.cta.chatOnWhatsapp}</span>
               </a>
             </div>
 
