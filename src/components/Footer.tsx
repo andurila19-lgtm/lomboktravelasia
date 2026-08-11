@@ -11,7 +11,7 @@ export default function Footer() {
   const waUrl = getWhatsAppUrl({ locale, type: 'general' });
 
   return (
-    <footer className="bg-[#03140e] text-white pt-20 pb-10 border-t border-[#c5a880]/20">
+    <footer className="bg-[#03140e] text-white pt-20 pb-28 sm:pb-10 border-t border-[#c5a880]/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Column 1: Brand */}

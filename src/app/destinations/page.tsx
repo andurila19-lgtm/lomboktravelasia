@@ -59,7 +59,7 @@ export default function DestinationsIndexPage() {
           </h1>
 
           <p className="max-w-xl mx-auto text-xs sm:text-base text-zinc-200 leading-relaxed font-light drop-shadow-md">
-            From turquoise islands and white-sand beaches to mountain villages and authentic Sasak culture, discover the places that make Lombok unforgettable.
+            Explore Lombok&apos;s beaches, islands, mountain villages, and Sasak heritage sites across the island.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2 max-w-md mx-auto w-full">

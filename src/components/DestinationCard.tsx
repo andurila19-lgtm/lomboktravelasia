@@ -18,7 +18,7 @@ export default function DestinationCard({
   className = '',
   aspectRatio = 'aspect-4/3',
 }: DestinationCardProps) {
-  const { locale } = useLanguage();
+  const { locale, dict } = useLanguage();
   const content = getDestinationContent(destination, locale);
 
   return (
@@ -67,9 +67,9 @@ export default function DestinationCard({
         <div className="pt-2.5 border-t border-zinc-100 flex items-center justify-between">
           <Link
             href={`/destinations/${destination.slug}`}
-            className="inline-flex items-center gap-2 text-xs font-bold text-[#012d1d] hover:text-[#1b4332] uppercase tracking-wider transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-bold text-[#012d1d] hover:text-[#c5a880] uppercase tracking-wider transition-colors"
           >
-            <span>Explore Destination</span>
+            <span>{dict.cta.planATripHere}</span>
             <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
           </Link>
         </div>

@@ -44,14 +44,14 @@ export const metadata: Metadata = {
     url: 'https://lomboktravelasia.com',
     title: 'Lombok Travel Asia | Curated Lombok Adventures & Tours',
     description:
-      'Authentic travel experiences, guided Mount Rinjani expeditions, and pristine island escapes in Lombok, Indonesia.',
+      'Local travel experiences, guided Mount Rinjani trekking, and island tours across Lombok, Indonesia.',
     siteName: 'Lombok Travel Asia',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Lombok Travel Asia | Curated Lombok Adventures & Tours',
     description:
-      'Authentic travel experiences, guided Mount Rinjani expeditions, and pristine island escapes in Lombok, Indonesia.',
+      'Local travel experiences, guided Mount Rinjani trekking, and island tours across Lombok, Indonesia.',
   },
   icons: {
     icon: '/favicon.ico',
@@ -70,6 +70,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${sansFont.variable} ${serifFont.variable} h-full antialiased scroll-smooth`}
+      suppressHydrationWarning
     >
       <head>
         <script
@@ -81,7 +82,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }}
         />
       </head>
-      <body className={`${sansFont.className} min-h-full flex flex-col bg-[#fcf9f8] text-[#1b1c1c] selection:bg-[#012d1d] selection:text-white`}>
+      <body
+        className={`${sansFont.className} min-h-full flex flex-col bg-[#fcf9f8] text-[#1b1c1c] selection:bg-[#012d1d] selection:text-white`}
+        suppressHydrationWarning
+      >
         <LanguageProvider>
           <Navbar />
           <main className="flex-1">{children}</main>

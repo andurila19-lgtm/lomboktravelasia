@@ -88,7 +88,11 @@ export default async function DestinationDetailPage({
       ? relatedDestinations
       : destinations.filter((d) => d.slug !== destination.slug).slice(0, 3);
 
-  const waUrl = getWhatsAppUrl({ locale: 'en', type: 'general' });
+  const waUrl = getWhatsAppUrl({
+    locale: 'en',
+    type: 'destination',
+    destinationName: destination.name,
+  });
 
   // Structured Data Schema for TouristDestination
   const jsonLd = {

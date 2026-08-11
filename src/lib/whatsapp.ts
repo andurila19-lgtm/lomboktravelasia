@@ -5,15 +5,15 @@ const WHATSAPP_NUMBER = rawNumber.replace(/[^0-9]/g, '');
 
 const templates = {
   en: {
-    general: 'Hello Lombok Travel Asia, I would like to inquire about your tours.',
-    tour: (tourName: string) =>
-      `Hello Lombok Travel Asia, I am interested in the ${tourName} tour. Could you share more details?`,
+    general: 'Hello Lombok Travel Asia, I would like to know more about your Lombok travel experiences.',
+    tour: (tourName: string) => `Hello Lombok Travel Asia, I am interested in ${tourName}.`,
+    destination: (destName: string) => `Hello Lombok Travel Asia, I am interested in planning a trip to ${destName}.`,
     customTrip: 'Hello Lombok Travel Asia, I would like to plan a custom trip to Lombok.',
   },
   id: {
-    general: 'Halo Lombok Travel Asia, saya ingin bertanya tentang tur Anda.',
-    tour: (tourName: string) =>
-      `Halo Lombok Travel Asia, saya tertarik dengan tur ${tourName}. Bisakah Anda memberikan informasi lebih lanjut?`,
+    general: 'Halo Lombok Travel Asia, saya ingin mengetahui lebih lanjut tentang pengalaman wisata Lombok Anda.',
+    tour: (tourName: string) => `Halo Lombok Travel Asia, saya tertarik dengan ${tourName}.`,
+    destination: (destName: string) => `Halo Lombok Travel Asia, saya tertarik merencanakan perjalanan ke ${destName}.`,
     customTrip: 'Halo Lombok Travel Asia, saya ingin merencanakan perjalanan kustom ke Lombok.',
   },
 } as const;
@@ -21,8 +21,9 @@ const templates = {
 export function getWhatsAppUrl(options?: {
   message?: string;
   tourName?: string;
+  destinationName?: string;
   locale?: Locale;
-  type?: 'general' | 'tour' | 'customTrip';
+  type?: 'general' | 'tour' | 'destination' | 'customTrip';
 }): string {
   const locale = options?.locale || 'en';
   let message: string;
@@ -31,6 +32,8 @@ export function getWhatsAppUrl(options?: {
     message = options.message;
   } else if (options?.type === 'tour' && options.tourName) {
     message = templates[locale].tour(options.tourName);
+  } else if (options?.type === 'destination' && options.destinationName) {
+    message = templates[locale].destination(options.destinationName);
   } else if (options?.type === 'customTrip') {
     message = templates[locale].customTrip;
   } else {
