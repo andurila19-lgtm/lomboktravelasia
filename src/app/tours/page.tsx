@@ -198,7 +198,29 @@ function ToursContent() {
 
 export default function ToursPage() {
   return (
-    <Suspense fallback={<div className="py-32 text-center text-zinc-500 text-xs uppercase tracking-widest font-bold">Loading Curated Expeditions...</div>}>
+    <Suspense
+      fallback={
+        <div className="pt-24 pb-24 bg-[#faf7f2] min-h-screen text-[#1a221f]">
+          <div className="relative bg-[#062319] text-white py-24 px-4 sm:px-6 lg:px-8 mb-12 overflow-hidden border-b border-[#c5a880]/20">
+            <div className="relative z-10 max-w-4xl mx-auto text-center space-y-6">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0d3829] text-[#c5a880] text-[11px] font-bold uppercase tracking-[0.2em] border border-[#c5a880]/30">
+                Curated Expeditions
+              </span>
+              <h1 className="font-serif text-4xl sm:text-6xl font-bold tracking-tight text-white leading-tight">
+                Explore Our <span className="italic font-normal text-[#c5a880]">Journeys</span>
+              </h1>
+            </div>
+          </div>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {tours.map((tour) => (
+                <TourCard key={tour.slug} tour={tour} />
+              ))}
+            </div>
+          </div>
+        </div>
+      }
+    >
       <ToursContent />
     </Suspense>
   );

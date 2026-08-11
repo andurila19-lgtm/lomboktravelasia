@@ -164,7 +164,8 @@ export default function Footer() {
             <span className="text-[11px] text-zinc-500 font-normal">Lombok Travel Asia — Interactive Sales Concept Demo</span>
           </div>
           <p className="flex items-center gap-1">
-            Handcrafted with <Heart className="w-3.5 h-3.5 text-[#c5a880] fill-current" /> in Lombok
+            <span>Handcrafted in Lombok</span>
+            <Heart className="w-3.5 h-3.5 text-[#c5a880] fill-current ml-0.5" />
           </p>
         </div>
       </div>

@@ -96,7 +96,7 @@ export default function AboutPage() {
           <div className="lg:col-span-5 relative aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-[#86af99]/30">
             <Image
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuAo56Y_53LlYn8fvJE-RY-HDfY1fE4fm_ct7B3wc6iZM3WHuOD3UhCcKJfauSLQikVKvzsJbLfiNJuaIbJjiS-7LSem4MgkciOPgPzUD58lwJDt72CZi-3lffBuQCzNqK0ZvIf4Lz0eglDIV0YugedjGDiuCRp2XJziY-rrPhw9xNfb-l_FP8-Xzz3syOy6vMOmX2U0czg3rdxIYev3zjG8Wb9-NzYbgYZmUf2FRVY3-ROTey6BQyoE"
-              alt="Maya - Lead Travel Consultant"
+              alt="Lombok Travel Team - Local Travel Experts"
               fill
               className="object-cover"
             />
