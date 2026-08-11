@@ -18,8 +18,8 @@ export interface Tour {
   category: string;
   duration: string;
   difficulty: 'easy' | 'moderate' | 'challenging';
-  rating: number;
-  reviewCount: number;
+  rating?: number;
+  reviewCount?: number;
   price: { amount: number; currency: string; placeholder: boolean };
   location: string;
   maxAltitude?: string;
@@ -64,8 +64,6 @@ export const tours: Tour[] = [
     category: 'Trekking',
     duration: '3 Days, 2 Nights',
     difficulty: 'challenging',
-    rating: 4.9,
-    reviewCount: 128,
     price: { amount: 3500000, currency: 'IDR', placeholder: true },
     location: 'Senaru & Sembalun, Lombok',
     maxAltitude: '3,726m',
@@ -126,8 +124,6 @@ export const tours: Tour[] = [
     category: 'Island Hopping',
     duration: 'Full Day',
     difficulty: 'easy',
-    rating: 4.8,
-    reviewCount: 95,
     price: { amount: 1200000, currency: 'IDR', placeholder: true },
     location: 'Gili Trawangan, Air & Meno',
     groupSize: '2-12 Pax',
@@ -181,8 +177,6 @@ export const tours: Tour[] = [
     category: 'Culture & Nature',
     duration: 'Full Day',
     difficulty: 'moderate',
-    rating: 5.0,
-    reviewCount: 42,
     price: { amount: 850000, currency: 'IDR', placeholder: true },
     location: 'Senaru & Tetebatu, Lombok',
     groupSize: '2-8 Pax',
@@ -235,8 +229,6 @@ export const tours: Tour[] = [
     category: 'Beach & Surf',
     duration: 'Full Day',
     difficulty: 'easy',
-    rating: 4.9,
-    reviewCount: 76,
     price: { amount: 950000, currency: 'IDR', placeholder: true },
     location: 'Kuta, Tanjung Aan, Selong Belanak & Mandalika',
     groupSize: '2-8 Pax',
@@ -290,8 +282,6 @@ export const tours: Tour[] = [
     category: 'Island & Beach',
     duration: 'Full Day',
     difficulty: 'easy',
-    rating: 4.8,
-    reviewCount: 54,
     price: { amount: 1100000, currency: 'IDR', placeholder: true },
     location: 'Pink Beach & Sekotong, Lombok',
     groupSize: '2-10 Pax',
@@ -344,8 +334,6 @@ export const tours: Tour[] = [
     category: 'Culture',
     duration: 'Half Day / Full Day',
     difficulty: 'easy',
-    rating: 4.9,
-    reviewCount: 63,
     price: { amount: 650000, currency: 'IDR', placeholder: true },
     location: 'Sade, Sukarara & Banyumulek',
     groupSize: '2-10 Pax',

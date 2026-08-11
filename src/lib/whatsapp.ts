@@ -1,6 +1,7 @@
 import type { Locale } from './i18n/config';
 
-const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '6281912345678';
+const rawNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '';
+const WHATSAPP_NUMBER = rawNumber.replace(/[^0-9]/g, '');
 
 const templates = {
   en: {
@@ -36,5 +37,8 @@ export function getWhatsAppUrl(options?: {
     message = templates[locale].general;
   }
 
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  const encodedMsg = encodeURIComponent(message);
+  return WHATSAPP_NUMBER
+    ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMsg}`
+    : `https://api.whatsapp.com/send?text=${encodedMsg}`;
 }

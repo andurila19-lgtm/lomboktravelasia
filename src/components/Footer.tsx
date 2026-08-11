@@ -42,13 +42,13 @@ export default function Footer() {
               >
                 <MessageCircle className="w-4 h-4 fill-current" />
               </a>
-              <a
-                href="mailto:info@lomboktravelasia.com"
+              <Link
+                href="/contact"
                 className="w-9 h-9 rounded-full bg-[#0d3829] hover:bg-[#c5a880] text-[#c5a880] hover:text-[#062319] flex items-center justify-center transition-colors border border-[#c5a880]/20"
-                aria-label="Email"
+                aria-label="Send Inquiry"
               >
                 <Mail className="w-4 h-4" />
-              </a>
+              </Link>
             </div>
           </div>
 

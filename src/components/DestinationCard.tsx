@@ -53,9 +53,11 @@ export default function DestinationCard({
       {/* Content Body */}
       <div className="p-4 sm:p-5 flex flex-col flex-1 justify-between gap-3 text-left">
         <div>
-          <h3 className="font-serif text-lg sm:text-xl font-bold text-[#012d1d] group-hover:text-[#1b4332] transition-colors leading-snug">
-            {content.title}
-          </h3>
+          <Link href={`/destinations/${destination.slug}`}>
+            <h3 className="font-serif text-lg sm:text-xl font-bold text-[#012d1d] group-hover:text-[#c5a880] transition-colors leading-snug">
+              {content.title}
+            </h3>
+          </Link>
           <p className="text-xs text-zinc-600 font-normal line-clamp-2 mt-1.5 leading-relaxed">
             {content.shortDescription}
           </p>

@@ -103,12 +103,13 @@ export default function Home() {
             >
               {/* Where to? Input Box */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest px-1">
+                <label htmlFor="search-where-input" className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest px-1">
                   {dict.home.searchWhere}
                 </label>
                 <div className="bg-[#faf7f2] p-3.5 rounded-xl border border-zinc-200 hover:border-[#012d1d] focus-within:border-[#012d1d] focus-within:ring-2 focus-within:ring-[#012d1d]/20 transition-all flex items-center gap-3">
                   <MapPin className="w-5 h-5 text-[#012d1d] shrink-0" />
                   <input
+                    id="search-where-input"
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
@@ -122,14 +123,16 @@ export default function Home() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* When? Date Picker Box */}
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest px-1">
+                  <label htmlFor="search-date-input" className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest px-1">
                     When?
                   </label>
                   <div className="bg-[#faf7f2] p-3.5 rounded-xl border border-zinc-200 hover:border-[#012d1d] focus-within:border-[#012d1d] focus-within:ring-2 focus-within:ring-[#012d1d]/20 transition-all flex items-center gap-3">
                     <Calendar className="w-5 h-5 text-[#012d1d] shrink-0" />
                     <input
+                      id="search-date-input"
                       type="date"
                       defaultValue="2026-08-15"
+                      aria-label="Travel Date"
                       className="w-full bg-transparent text-sm font-semibold text-zinc-900 focus:outline-none outline-none border-none focus:ring-0 ring-0 shadow-none cursor-pointer"
                     />
                   </div>
@@ -137,9 +140,9 @@ export default function Home() {
 
                 {/* Who? Stepper Guest Counter Box */}
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest px-1">
+                  <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest px-1">
                     {dict.home.searchWho}
-                  </label>
+                  </span>
                   <div className="bg-[#faf7f2] p-3 rounded-xl border border-zinc-200 flex items-center justify-between gap-2">
                     <div className="flex items-center gap-2.5">
                       <Users className="w-5 h-5 text-[#012d1d] shrink-0" />
@@ -157,21 +160,23 @@ export default function Home() {
                     <div className="flex items-center gap-1.5">
                       <button
                         type="button"
+                        aria-label="Decrease guest count"
                         onClick={() => {
                           const current = parseInt(selectedTravelers) || 2;
                           if (current > 1) setSelectedTravelers(String(current - 1));
                         }}
-                        className="w-7 h-7 rounded-lg bg-white border border-zinc-300 flex items-center justify-center font-bold text-zinc-700 hover:bg-[#012d1d] hover:text-white transition-all shadow-xs active:scale-95 text-xs"
+                        className="w-7 h-7 rounded-lg bg-white border border-zinc-300 flex items-center justify-center font-bold text-zinc-700 hover:bg-[#012d1d] hover:text-white transition-all shadow-xs active:scale-95 text-xs cursor-pointer"
                       >
                         -
                       </button>
                       <button
                         type="button"
+                        aria-label="Increase guest count"
                         onClick={() => {
                           const current = parseInt(selectedTravelers) || 2;
                           if (current < 10) setSelectedTravelers(String(current + 1));
                         }}
-                        className="w-7 h-7 rounded-lg bg-white border border-zinc-300 flex items-center justify-center font-bold text-zinc-700 hover:bg-[#012d1d] hover:text-white transition-all shadow-xs active:scale-95 text-xs"
+                        className="w-7 h-7 rounded-lg bg-white border border-zinc-300 flex items-center justify-center font-bold text-zinc-700 hover:bg-[#012d1d] hover:text-white transition-all shadow-xs active:scale-95 text-xs cursor-pointer"
                       >
                         +
                       </button>

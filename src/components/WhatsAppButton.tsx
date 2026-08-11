@@ -3,6 +3,7 @@
 import React from 'react';
 import { useLanguage } from './LanguageContext';
 import { getWhatsAppUrl } from '@/lib/whatsapp';
+import { trackEvent } from '@/lib/analytics';
 import { MessageCircle, Sparkles } from 'lucide-react';
 
 export default function WhatsAppButton() {
@@ -15,6 +16,7 @@ export default function WhatsAppButton() {
         href={waUrl}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() => trackEvent('whatsapp_click', { location: 'floating_button' })}
         aria-label={dict.cta.whatsappUs}
         className="group relative flex items-center gap-3 px-5 py-3 rounded-full bg-[#062319]/95 text-[#c5a880] backdrop-blur-xl border border-[#c5a880]/40 shadow-[0_10px_30px_rgba(6,35,25,0.3)] hover:scale-105 hover:bg-[#062319] transition-all duration-300"
       >

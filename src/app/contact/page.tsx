@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useLanguage } from '@/components/LanguageContext';
 import { getWhatsAppUrl } from '@/lib/whatsapp';
+import { trackEvent } from '@/lib/analytics';
 import { Sparkles, MessageCircle, Phone, Mail, MapPin, CheckCircle2 } from 'lucide-react';
 
 const contactSchema = z.object({
@@ -37,6 +38,11 @@ export default function ContactPage() {
   });
 
   const onSubmit = (data: ContactFormValues) => {
+    trackEvent('contact_form_submit', {
+      destination: data.destination,
+      travelers: data.travelers,
+    });
+
     // Generate contextual WhatsApp message with form details
     const text = `Halo Lombok Travel Asia,\n\nNama: ${data.fullName}\nEmail: ${data.email}\nWhatsApp: ${data.whatsapp}\nTanggal Perjalanan: ${data.dates || 'Flexibel'}\nJumlah Tamu: ${data.travelers}\nDestinasi: ${data.destination}\n\nPesan:\n${data.message}`;
 
@@ -129,7 +135,7 @@ export default function ContactPage() {
                       type="text"
                       {...register('whatsapp')}
                       className="w-full p-3 rounded-xl border border-zinc-200 focus:outline-none focus:ring-2 focus:ring-[#012d1d] text-sm"
-                      placeholder="+62 812-3456-7890"
+                      placeholder="+62 812 XXXX XXXX"
                     />
                     {errors.whatsapp && (
                       <p className="text-xs text-rose-500 mt-1">{errors.whatsapp.message}</p>

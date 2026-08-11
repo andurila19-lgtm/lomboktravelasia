@@ -1,21 +1,18 @@
-'use client';
-
-import React, { useState } from 'react';
-import { notFound, useParams } from 'next/navigation';
-import Image from 'next/image';
+import React from 'react';
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { tours, getTourContent } from '@/content/tours';
-import { useLanguage } from '@/components/LanguageContext';
 import TourCard from '@/components/TourCard';
+import TourGallery from '@/components/TourGallery';
+import TourItineraryAccordion from '@/components/TourItineraryAccordion';
+import TourFaqAccordion from '@/components/TourFaqAccordion';
 import { getWhatsAppUrl } from '@/lib/whatsapp';
 import { formatCurrency } from '@/lib/utils';
 import { generateTouristTripSchema, generateBreadcrumbSchema, generateFAQSchema } from '@/lib/structured-data';
 import {
   Clock,
-  MapPin,
   Users,
-  ChevronDown,
-  ChevronUp,
   CheckCircle2,
   XCircle,
   MessageCircle,
@@ -23,31 +20,61 @@ import {
   Mountain,
   Utensils,
   Home,
-  HelpCircle,
   ArrowLeft,
-  Share2,
   ArrowRight,
 } from 'lucide-react';
 
-export default function TourDetailPage() {
-  const params = useParams();
-  const slug = params?.slug as string;
+interface TourPageProps {
+  params: Promise<{ slug: string }>;
+}
 
+export async function generateMetadata({
+  params,
+}: TourPageProps): Promise<Metadata> {
+  const { slug } = await params;
   const tour = tours.find((t) => t.slug === slug);
+
+  if (!tour) {
+    return {
+      title: 'Tour Not Found | Lombok Travel Asia',
+    };
+  }
+
+  const content = getTourContent(tour, 'en');
+
+  return {
+    title: `${content.title} | Lombok Travel Asia`,
+    description: content.description,
+    openGraph: {
+      title: content.title,
+      description: content.description,
+      images: [{ url: tour.images[0] }],
+      url: `https://lomboktravelasia.com/tours/${tour.slug}`,
+    },
+    alternates: {
+      canonical: `https://lomboktravelasia.com/tours/${tour.slug}`,
+    },
+  };
+}
+
+export async function generateStaticParams() {
+  return tours.map((tour) => ({
+    slug: tour.slug,
+  }));
+}
+
+export default async function TourDetailPage({ params }: TourPageProps) {
+  const { slug } = await params;
+  const tour = tours.find((t) => t.slug === slug);
+
   if (!tour) {
     notFound();
   }
 
-  const { locale, dict } = useLanguage();
-  const content = getTourContent(tour, locale);
-  const [selectedImage, setSelectedImage] = useState(tour.images[0]);
-  const [openDay, setOpenDay] = useState<number | null>(1);
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
-
+  const content = getTourContent(tour, 'en');
   const relatedTours = tours.filter((t) => t.slug !== slug).slice(0, 3);
-
   const waUrl = getWhatsAppUrl({
-    locale,
+    locale: 'en',
     type: 'tour',
     tourName: content.title,
   });
@@ -60,7 +87,7 @@ export default function TourDetailPage() {
       duration: tour.duration,
       location: tour.location,
     },
-    locale
+    'en'
   );
 
   const breadcrumbSchema = generateBreadcrumbSchema([
@@ -86,14 +113,14 @@ export default function TourDetailPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
-      {/* Top Breadcrumb & Actions */}
+      {/* Top Breadcrumb & Back Link */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 flex items-center justify-between">
         <Link
           href="/tours"
           className="inline-flex items-center gap-2 text-xs font-bold text-zinc-600 hover:text-[#012d1d] transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
-          <span>{dict.common.back} {dict.nav.tours}</span>
+          <span>Back to Tours</span>
         </Link>
       </div>
 
@@ -108,7 +135,7 @@ export default function TourDetailPage() {
               {tour.difficulty}
             </span>
             <span className="px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-full bg-[#faf7f2] border border-[#c5a880]/40 text-[#012d1d]">
-              {locale === 'id' ? 'Pengalaman Lokal' : 'Local Experience'}
+              Local Experience
             </span>
           </div>
 
@@ -118,45 +145,17 @@ export default function TourDetailPage() {
           <p className="text-lg text-zinc-600 max-w-3xl font-light">{content.subtitle}</p>
         </div>
 
-        {/* Gallery */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-12">
-          {/* Main Image */}
-          <div className="lg:col-span-2 relative aspect-[16/10] rounded-2xl overflow-hidden bg-zinc-900 shadow-lg">
-            <Image
-              src={selectedImage || tour.images[0]}
-              alt={content.title}
-              fill
-              priority
-              className="object-cover"
-            />
-          </div>
-
-          {/* Thumbnails list */}
-          <div className="flex lg:flex-col gap-4">
-            {tour.images.map((img, idx) => (
-              <button
-                key={idx}
-                onClick={() => setSelectedImage(img)}
-                className={`relative flex-1 aspect-[16/10] rounded-xl overflow-hidden border-2 transition-all ${
-                  selectedImage === img
-                    ? 'border-[#012d1d] scale-[0.98]'
-                    : 'border-transparent opacity-80 hover:opacity-100'
-                }`}
-              >
-                <Image src={img} alt={`Preview ${idx + 1}`} fill className="object-cover" />
-              </button>
-            ))}
-          </div>
-        </div>
+        {/* Gallery Component */}
+        <TourGallery images={tour.images} title={content.title} />
 
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Left Column: Details */}
           <div className="lg:col-span-2 space-y-12">
             {/* Overview Description */}
-            <div className="bg-white p-8 rounded-2xl border border-zinc-200/80 shadow-sm space-y-4">
+            <div className="bg-white p-8 rounded-2xl border border-zinc-200/80 shadow-xs space-y-4">
               <h2 className="font-serif text-2xl font-bold text-[#012d1d]">
-                {dict.tours.theExperience}
+                The Experience
               </h2>
               <p className="text-zinc-600 leading-relaxed text-base font-light">
                 {content.description}
@@ -167,19 +166,19 @@ export default function TourDetailPage() {
             {content.highlights && content.highlights.length > 0 && (
               <div className="space-y-4">
                 <h2 className="font-serif text-2xl font-bold text-[#012d1d]">
-                  {dict.tours.highlights}
+                  Highlights
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {content.highlights.map((h, i) => (
                     <div
                       key={i}
-                      className="p-5 rounded-xl bg-white border border-zinc-200/80 shadow-sm flex items-start gap-4"
+                      className="p-5 rounded-xl bg-white border border-zinc-200/80 shadow-xs flex items-start gap-4"
                     >
                       <div className="w-10 h-10 rounded-full bg-[#1b4332] text-[#86af99] flex items-center justify-center shrink-0">
                         <CheckCircle2 className="w-5 h-5" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-sm text-[#012d1d]">{h.title}</h4>
+                        <h3 className="font-bold text-sm text-[#012d1d]">{h.title}</h3>
                         <p className="text-xs text-zinc-500 mt-1">{h.description}</p>
                       </div>
                     </div>
@@ -191,46 +190,9 @@ export default function TourDetailPage() {
             {/* Itinerary Accordion */}
             <div className="space-y-4">
               <h2 className="font-serif text-2xl font-bold text-[#012d1d]">
-                {dict.tours.dailyItinerary}
+                Daily Itinerary
               </h2>
-              <div className="space-y-3">
-                {content.itinerary.map((day) => {
-                  const isOpen = openDay === day.day;
-                  return (
-                    <div
-                      key={day.day}
-                      className="rounded-2xl bg-white border border-zinc-200 overflow-hidden transition-shadow shadow-sm"
-                    >
-                      <button
-                        onClick={() => setOpenDay(isOpen ? null : day.day)}
-                        className="w-full p-6 text-left flex items-center justify-between gap-4 hover:bg-zinc-50 transition-colors"
-                      >
-                        <div className="flex items-center gap-4">
-                          <span className="w-10 h-10 rounded-full bg-[#012d1d] text-[#86af99] font-serif font-bold text-base flex items-center justify-center shrink-0">
-                            {day.day}
-                          </span>
-                          <div>
-                            <h3 className="font-bold text-base text-[#012d1d]">{day.title}</h3>
-                            <span className="text-xs text-zinc-500 font-medium">
-                              Duration: {day.duration} {day.elevation && `• Elevation: ${day.elevation}`}
-                            </span>
-                          </div>
-                        </div>
-                        {isOpen ? (
-                          <ChevronUp className="w-5 h-5 text-zinc-400" />
-                        ) : (
-                          <ChevronDown className="w-5 h-5 text-zinc-400" />
-                        )}
-                      </button>
-                      {isOpen && (
-                        <div className="px-6 pb-6 pt-2 border-t border-zinc-100 text-sm text-zinc-600 leading-relaxed">
-                          {day.description}
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
+              <TourItineraryAccordion itinerary={content.itinerary} />
             </div>
 
             {/* Inclusions & Exclusions */}
@@ -239,7 +201,7 @@ export default function TourDetailPage() {
               <div className="p-6 rounded-2xl bg-emerald-50/50 border border-emerald-200 space-y-4">
                 <h3 className="font-bold text-emerald-900 text-base flex items-center gap-2">
                   <CheckCircle2 className="w-5 h-5 text-emerald-600" />
-                  <span>{dict.tours.whatsIncluded}</span>
+                  <span>What&apos;s Included</span>
                 </h3>
                 <ul className="space-y-2 text-xs text-emerald-950 font-medium">
                   {content.inclusions.map((item, idx) => (
@@ -255,7 +217,7 @@ export default function TourDetailPage() {
               <div className="p-6 rounded-2xl bg-rose-50/50 border border-rose-200 space-y-4">
                 <h3 className="font-bold text-rose-900 text-base flex items-center gap-2">
                   <XCircle className="w-5 h-5 text-rose-600" />
-                  <span>{dict.tours.notIncluded}</span>
+                  <span>Not Included</span>
                 </h3>
                 <ul className="space-y-2 text-xs text-rose-950 font-medium">
                   {content.exclusions.map((item, idx) => (
@@ -268,24 +230,24 @@ export default function TourDetailPage() {
               </div>
             </div>
 
-            {/* Practical Info: What to Bring & Meeting Point */}
-            <div className="p-8 rounded-2xl bg-white border border-zinc-200/80 shadow-sm space-y-6">
+            {/* Practical Info */}
+            <div className="p-8 rounded-2xl bg-white border border-zinc-200/80 shadow-xs space-y-6">
               <h2 className="font-serif text-2xl font-bold text-[#012d1d]">
-                {dict.tours.preparationMeetingPoint}
+                Preparation & Meeting Point
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <h4 className="font-bold text-sm text-[#012d1d] mb-1">
-                    {dict.tours.whatToBring}
-                  </h4>
+                  <h3 className="font-bold text-sm text-[#012d1d] mb-1">
+                    What to Bring
+                  </h3>
                   <p className="text-xs text-zinc-600 leading-relaxed font-light">
                     {content.whatToBring}
                   </p>
                 </div>
                 <div>
-                  <h4 className="font-bold text-sm text-[#012d1d] mb-1">
-                    {dict.tours.meetingPoint}
-                  </h4>
+                  <h3 className="font-bold text-sm text-[#012d1d] mb-1">
+                    Meeting Point
+                  </h3>
                   <p className="text-xs text-zinc-600 leading-relaxed font-light">
                     {content.meetingPoint}
                   </p>
@@ -297,36 +259,9 @@ export default function TourDetailPage() {
             {content.faq && content.faq.length > 0 && (
               <div className="space-y-4">
                 <h2 className="font-serif text-2xl font-bold text-[#012d1d]">
-                  {dict.tours.faq}
+                  Frequently Asked Questions
                 </h2>
-                <div className="space-y-3">
-                  {content.faq.map((item, idx) => {
-                    const isOpen = openFaq === idx;
-                    return (
-                      <div
-                        key={idx}
-                        className="rounded-xl bg-white border border-zinc-200 overflow-hidden"
-                      >
-                        <button
-                          onClick={() => setOpenFaq(isOpen ? null : idx)}
-                          className="w-full p-4 text-left flex items-center justify-between font-bold text-sm text-[#012d1d] hover:bg-zinc-50"
-                        >
-                          <span>{item.question}</span>
-                          {isOpen ? (
-                            <ChevronUp className="w-4 h-4 text-zinc-400" />
-                          ) : (
-                            <ChevronDown className="w-4 h-4 text-zinc-400" />
-                          )}
-                        </button>
-                        {isOpen && (
-                          <div className="px-4 pb-4 pt-1 border-t border-zinc-100 text-xs text-zinc-600 leading-relaxed">
-                            {item.answer}
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
+                <TourFaqAccordion faq={content.faq} />
               </div>
             )}
           </div>
@@ -337,28 +272,28 @@ export default function TourDetailPage() {
               {/* Header Headline */}
               <div>
                 <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#86af99] block mb-1">
-                  {locale === 'id' ? 'Perencanaan Perjalanan' : 'Trip Planning'}
+                  Trip Planning
                 </span>
                 <h3 className="font-serif text-xl font-bold text-white">
-                  {locale === 'id' ? 'Tertarik dengan Pengalaman Ini?' : 'Interested in this experience?'}
+                  Interested in this experience?
                 </h3>
               </div>
 
               {/* Price Banner */}
               <div className="border-y border-white/10 py-5">
                 <span className="block text-xs uppercase tracking-wider text-[#86af99] font-medium mb-1">
-                  {dict.tours.startingFrom}
+                  Pricing
                 </span>
                 {tour.price.placeholder ? (
                   <span className="text-xl font-bold text-[#86af99] block">
-                    {dict.tours.contactForPricing}
+                    Contact for pricing
                   </span>
                 ) : (
                   <div className="flex items-baseline gap-2">
                     <span className="text-3xl font-bold text-[#86af99]">
                       {formatCurrency(tour.price.amount, tour.price.currency)}
                     </span>
-                    <span className="text-xs text-zinc-300">{dict.tours.perPerson}</span>
+                    <span className="text-xs text-zinc-300"> /person</span>
                   </div>
                 )}
               </div>
@@ -368,7 +303,7 @@ export default function TourDetailPage() {
                 <div className="flex items-center justify-between text-zinc-300">
                   <span className="flex items-center gap-2 text-zinc-400">
                     <Clock className="w-4 h-4 text-[#86af99]" />
-                    {dict.tours.duration}
+                    Duration
                   </span>
                   <span className="font-bold text-white">{tour.duration}</span>
                 </div>
@@ -376,7 +311,7 @@ export default function TourDetailPage() {
                 <div className="flex items-center justify-between text-zinc-300">
                   <span className="flex items-center gap-2 text-zinc-400">
                     <Users className="w-4 h-4 text-[#86af99]" />
-                    {dict.tours.groupSize}
+                    Group Size
                   </span>
                   <span className="font-bold text-white">{tour.groupSize}</span>
                 </div>
@@ -385,7 +320,7 @@ export default function TourDetailPage() {
                   <div className="flex items-center justify-between text-zinc-300">
                     <span className="flex items-center gap-2 text-zinc-400">
                       <Mountain className="w-4 h-4 text-[#86af99]" />
-                      {dict.tours.maxAltitude}
+                      Max Altitude
                     </span>
                     <span className="font-bold text-white">{tour.maxAltitude}</span>
                   </div>
@@ -394,7 +329,7 @@ export default function TourDetailPage() {
                 <div className="flex items-center justify-between text-zinc-300">
                   <span className="flex items-center gap-2 text-zinc-400">
                     <Utensils className="w-4 h-4 text-[#86af99]" />
-                    {dict.tours.meals}
+                    Meals
                   </span>
                   <span className="font-bold text-white">{tour.meals}</span>
                 </div>
@@ -402,7 +337,7 @@ export default function TourDetailPage() {
                 <div className="flex items-center justify-between text-zinc-300">
                   <span className="flex items-center gap-2 text-zinc-400">
                     <Home className="w-4 h-4 text-[#86af99]" />
-                    {dict.tours.accommodation}
+                    Accommodation
                   </span>
                   <span className="font-bold text-white">{tour.accommodation}</span>
                 </div>
@@ -410,7 +345,7 @@ export default function TourDetailPage() {
                 <div className="flex items-center justify-between text-zinc-300">
                   <span className="flex items-center gap-2 text-zinc-400">
                     <Calendar className="w-4 h-4 text-[#86af99]" />
-                    {dict.tours.availability}
+                    Availability
                   </span>
                   <span className="font-bold text-white">{tour.availability}</span>
                 </div>
@@ -425,14 +360,14 @@ export default function TourDetailPage() {
                   className="w-full py-4 rounded-full bg-[#25D366] text-black font-bold text-sm hover:bg-[#20bd5a] transition-all flex items-center justify-center gap-2 shadow-lg"
                 >
                   <MessageCircle className="w-5 h-5 fill-current" />
-                  <span>{locale === 'id' ? 'Tanya di WhatsApp' : 'Ask on WhatsApp'}</span>
+                  <span>Ask on WhatsApp</span>
                 </a>
               </div>
 
               {/* Help box */}
               <div className="p-4 rounded-2xl bg-[#1b4332]/60 border border-[#86af99]/20 text-center space-y-1">
-                <p className="text-xs font-bold text-[#86af99]">{dict.tours.needHelpDeciding}</p>
-                <p className="text-[11px] text-zinc-300">{dict.tours.chatWithExpert}</p>
+                <p className="text-xs font-bold text-[#86af99]">Need help deciding?</p>
+                <p className="text-[11px] text-zinc-300">Chat with our local travel team.</p>
               </div>
             </div>
           </div>
@@ -444,17 +379,17 @@ export default function TourDetailPage() {
             <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
               <div>
                 <span className="text-[10px] sm:text-xs font-bold text-[#012d1d] uppercase tracking-[0.2em] block mb-1">
-                  {locale === 'id' ? 'Jelajahi Lebih Banyak' : 'Explore More'}
+                  Explore More
                 </span>
                 <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#012d1d]">
-                  {locale === 'id' ? 'Tur Terkait' : 'Related Tours'}
+                  Related Tours
                 </h2>
               </div>
               <Link
                 href="/tours"
                 className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#012d1d] hover:opacity-80 transition-opacity"
               >
-                <span>{dict.cta.exploreAllTours}</span>
+                <span>Explore All Tours</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -470,10 +405,10 @@ export default function TourDetailPage() {
       {/* STICKY BOTTOM MOBILE BOOKING BAR */}
       <div className="fixed bottom-0 inset-x-0 z-40 sm:hidden bg-[#012d1d]/95 backdrop-blur-xl border-t border-[#86af99]/30 p-3.5 flex items-center justify-between shadow-2xl">
         <div className="flex flex-col text-left">
-          <span className="text-[10px] uppercase font-bold text-[#86af99]">{dict.tours.startingFrom}</span>
+          <span className="text-[10px] uppercase font-bold text-[#86af99]">Pricing</span>
           <span className="text-sm font-bold text-white">
             {tour.price.placeholder
-              ? dict.tours.contactForPricing
+              ? 'Contact for pricing'
               : formatCurrency(tour.price.amount, tour.price.currency)}
           </span>
         </div>
@@ -484,7 +419,7 @@ export default function TourDetailPage() {
           className="px-6 py-2.5 rounded-full bg-[#25D366] text-black font-bold text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg"
         >
           <MessageCircle className="w-4 h-4 fill-current text-black" />
-          <span>{locale === 'id' ? 'Tanya WA' : 'WhatsApp Us'}</span>
+          <span>WhatsApp Us</span>
         </a>
       </div>
     </div>
