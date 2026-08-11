@@ -32,8 +32,8 @@ export default function Home() {
   return (
     <div className="flex flex-col w-full min-h-screen bg-[#fcf9f8] text-[#1b1c1c] pt-0">
       <div className="flex flex-col w-full relative pb-16">
-        {/* HERO SECTION (POSITIONED HIGHER) */}
-        <section className="relative w-full min-h-[420px] sm:min-h-[480px] flex flex-col justify-start pt-20 sm:pt-24 pb-8 rounded-b-[2rem] overflow-hidden bg-[#fcf9f8]">
+        {/* HERO SECTION (RICH CINEMATIC DARK CONTRAST) */}
+        <section className="relative w-full min-h-[560px] sm:min-h-[620px] flex flex-col justify-start pt-28 sm:pt-32 pb-32 sm:pb-36 rounded-b-[2.5rem] overflow-hidden bg-[#03140e]">
           {/* Mount Rinjani High-Definition Background Image */}
           <div className="absolute inset-0 z-0">
             <Image
@@ -42,34 +42,39 @@ export default function Home() {
               fill
               sizes="100vw"
               priority
-              className="object-cover object-center opacity-85"
+              className="object-cover object-center opacity-60"
             />
-            {/* Stitch Gradient Overlays */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#fcf9f8] via-[#fcf9f8]/40 to-transparent" />
-            <div className="absolute inset-0 bg-black/10 mix-blend-overlay" />
+            {/* Rich Cinematic Dark Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#03140e]/90 via-[#03140e]/60 to-[#fcf9f8]" />
+            <div className="absolute inset-0 bg-black/20 mix-blend-multiply" />
           </div>
 
-          <div className="relative z-10 w-full px-5 sm:px-16 max-w-4xl mx-auto flex flex-col items-center text-center gap-3.5 text-[#1b1c1c]">
+          <div className="relative z-10 w-full px-5 sm:px-16 max-w-4xl mx-auto flex flex-col items-center text-center gap-3.5 text-white">
             {/* Overline Badge */}
-            <span className="font-sans text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-[#012d1d]">
+            <span className="font-sans text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em] text-[#c5a880]">
               {dict.home.overline}
             </span>
 
             {/* Main Headline */}
-            <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#1b1c1c] leading-tight mx-auto">
-              Discover Lombok <span className="italic font-normal">Beyond</span> the Ordinary
+            <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight mx-auto drop-shadow-lg">
+              Discover Lombok <span className="italic font-normal text-[#c5a880]">Beyond</span> the Ordinary
             </h1>
 
             {/* Subtitle */}
-            <p className="text-xs sm:text-sm text-[#414844] max-w-lg font-normal leading-relaxed mx-auto">
+            <p className="text-xs sm:text-sm text-zinc-200 max-w-lg font-light leading-relaxed mx-auto drop-shadow-sm">
               {dict.home.heroSubtitle}
             </p>
 
+            {/* Subtle Trust / Context Line */}
+            <div className="text-[10px] sm:text-xs font-semibold uppercase tracking-widest text-[#c5a880]/90 pt-1">
+              Lombok Tours • Private Trips • Custom Experiences
+            </div>
+
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-1 w-full sm:w-auto mx-auto">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-2 mb-4 w-full sm:w-auto mx-auto">
               <Link
                 href="/tours"
-                className="w-full sm:w-auto h-12 sm:h-13 px-7 bg-[#012d1d] hover:bg-[#1b4332] text-white font-semibold text-xs uppercase tracking-widest rounded-full shadow-lg flex items-center justify-center gap-2 transition-colors"
+                className="w-full sm:w-auto h-12 sm:h-13 px-8 bg-[#c5a880] hover:bg-white text-[#062319] font-bold text-xs uppercase tracking-widest rounded-full shadow-xl flex items-center justify-center gap-2 transition-all transform hover:scale-105"
               >
                 <span>Explore Tours</span>
                 <ArrowRight className="w-4 h-4" />
@@ -78,7 +83,7 @@ export default function Home() {
                 href={waCustomUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto h-12 sm:h-13 px-7 bg-[#fcf9f8]/80 backdrop-blur-md text-[#1b1c1c] font-semibold text-xs uppercase tracking-widest rounded-full border border-[#c1c8c2] flex items-center justify-center hover:bg-white transition-colors"
+                className="w-full sm:w-auto h-12 sm:h-13 px-8 bg-black/40 backdrop-blur-md text-white font-bold text-xs uppercase tracking-widest rounded-full border border-white/30 flex items-center justify-center hover:bg-white/20 transition-all"
               >
                 <span>Plan My Trip</span>
               </a>
@@ -86,8 +91,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* FLOATING SEARCH PANEL (MOVED HIGH UP TO PREVENT BOTTOM CUTOFF) */}
-        <section className="relative z-20 px-5 sm:px-16 -mt-20 sm:-mt-32 w-full max-w-3xl mx-auto">
+        {/* FLOATING SEARCH PANEL */}
+        <section className="relative z-20 px-5 sm:px-16 -mt-14 sm:-mt-20 w-full max-w-3xl mx-auto">
           <div className="bg-white rounded-3xl p-6 sm:p-7 shadow-[0_20px_50px_rgba(0,0,0,0.12)] border border-zinc-200/90 text-zinc-800 text-left space-y-4">
             <form
               onSubmit={(e) => {
@@ -313,8 +318,8 @@ export default function Home() {
                   <span className="text-[10px] text-zinc-400 uppercase tracking-wider font-semibold">Duration</span>
                 </div>
                 <div>
-                  <span className="block text-xl sm:text-2xl font-bold text-[#86af99]">100%</span>
-                  <span className="text-[10px] text-zinc-400 uppercase tracking-wider font-semibold">Certified Guides</span>
+                  <span className="block text-xl sm:text-2xl font-bold text-[#86af99]">Local</span>
+                  <span className="text-[10px] text-zinc-400 uppercase tracking-wider font-semibold">Trekking Team</span>
                 </div>
               </div>
               <div className="pt-2">

@@ -80,7 +80,7 @@ export const tours: Tour[] = [
     en: {
       title: '3-Day Mount Rinjani Summit Trek',
       subtitle: 'Conquer Indonesia\'s second highest volcano',
-      description: 'Embark on a transformative journey to the summit of Mount Rinjani, Indonesia\'s second-highest volcano. Witness the awe-inspiring sunrise from the 3,726m summit and camp by the serene crater lake, Segara Anak.',
+      description: 'Trek to the summit of Mount Rinjani, Indonesia\'s second-highest volcano (3,726m). Witness sunrise over the island from the peak and camp beside crater lake Segara Anak.',
       highlights: [
         { icon: 'sunny', title: 'Summit Sunrise', description: 'Watch the dawn break over the island from the 3,726m peak.' },
         { icon: 'water', title: 'Segara Anak Lake', description: 'Camp beside the stunning turquoise crater lake.' },
@@ -141,7 +141,7 @@ export const tours: Tour[] = [
     en: {
       title: 'Gili Islands Explorer',
       subtitle: 'Snorkel with turtles on pristine island beaches',
-      description: 'Discover the magic of Gili Trawangan, Gili Meno, and Gili Air on this full-day island hopping tour. Swim alongside green sea turtles and relax on white sand beaches.',
+      description: 'Explore Gili Trawangan, Gili Meno, and Gili Air on a full-day island hopping trip. Swim alongside sea turtles and relax on white sand beaches.',
       highlights: [
         { icon: 'scuba_diving', title: 'Turtle Snorkeling', description: 'Swim alongside green sea turtles in crystal-clear waters.' },
         { icon: 'sailing', title: 'Island Hopping', description: 'Visit Gili Trawangan, Meno, and Air by private boat.' },

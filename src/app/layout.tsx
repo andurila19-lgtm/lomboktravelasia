@@ -20,6 +20,7 @@ const serifFont = Playfair_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://lomboktravelasia.com'),
   title: {
     default: 'Lombok Travel Asia | Curated Lombok Adventures & Tours',
     template: '%s | Lombok Travel Asia',

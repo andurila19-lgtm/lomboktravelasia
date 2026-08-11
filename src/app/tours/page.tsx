@@ -19,17 +19,30 @@ function ToursContent() {
   const [selectedCategory, setSelectedCategory] = useState(initialCategory);
   const [selectedDifficulty, setSelectedDifficulty] = useState<string>('All');
 
-  const categories = ['All', 'Trekking', 'Beach', 'Culture', 'Snorkeling'];
-  const difficulties = ['All', 'easy', 'moderate', 'challenging'];
+  const categories = ['All', 'Trekking', 'Beach', 'Island', 'Culture', 'Snorkeling'];
+  const difficulties = ['All', 'Easy', 'Moderate', 'Challenging'];
 
   const filteredTours = useMemo(() => {
     return tours.filter((tour) => {
-      // Category check
-      if (
-        selectedCategory !== 'All' &&
-        tour.category.toLowerCase() !== selectedCategory.toLowerCase()
-      ) {
-        return false;
+      // Flexible Category check
+      if (selectedCategory !== 'All') {
+        const catLower = selectedCategory.toLowerCase();
+        const tourCatLower = tour.category.toLowerCase();
+        
+        let matchCat = false;
+        if (catLower === 'snorkeling') {
+          const enText = JSON.stringify(tour.en).toLowerCase();
+          const idText = JSON.stringify(tour.id).toLowerCase();
+          matchCat = tourCatLower.includes('snorkel') || enText.includes('snorkel') || idText.includes('snorkel');
+        } else if (catLower === 'beach') {
+          matchCat = tourCatLower.includes('beach') || tourCatLower.includes('surf');
+        } else if (catLower === 'island') {
+          matchCat = tourCatLower.includes('island') || tourCatLower.includes('gili');
+        } else {
+          matchCat = tourCatLower.includes(catLower);
+        }
+
+        if (!matchCat) return false;
       }
 
       // Difficulty check
@@ -42,17 +55,18 @@ function ToursContent() {
 
       // Search query check
       if (searchQuery.trim() !== '') {
-        const q = searchQuery.toLowerCase();
-        const content = tour[locale];
-        const matchTitle = content.title.toLowerCase().includes(q);
-        const matchDesc = content.description.toLowerCase().includes(q);
+        const q = searchQuery.toLowerCase().trim();
+        const matchTitle = tour.en.title.toLowerCase().includes(q) || tour.id.title.toLowerCase().includes(q);
+        const matchSub = tour.en.subtitle.toLowerCase().includes(q) || tour.id.subtitle.toLowerCase().includes(q);
+        const matchDesc = tour.en.description.toLowerCase().includes(q) || tour.id.description.toLowerCase().includes(q);
         const matchLocation = tour.location.toLowerCase().includes(q);
-        return matchTitle || matchDesc || matchLocation;
+        const matchCat = tour.category.toLowerCase().includes(q);
+        return matchTitle || matchSub || matchDesc || matchLocation || matchCat;
       }
 
       return true;
     });
-  }, [searchQuery, selectedCategory, selectedDifficulty, locale]);
+  }, [searchQuery, selectedCategory, selectedDifficulty]);
 
   return (
     <div className="pt-24 pb-24 bg-[#faf7f2] min-h-screen text-[#1a221f]">
@@ -111,8 +125,8 @@ function ToursContent() {
                   <button
                     key={diff}
                     onClick={() => setSelectedDifficulty(diff)}
-                    className={`px-3.5 py-1.5 rounded-full text-xs font-bold capitalize transition-all ${
-                      selectedDifficulty === diff
+                    className={`px-3.5 py-1.5 rounded-full text-xs font-bold capitalize transition-all cursor-pointer ${
+                      selectedDifficulty.toLowerCase() === diff.toLowerCase()
                         ? 'bg-[#062319] text-[#c5a880] shadow-md border border-[#c5a880]/30'
                         : 'bg-[#faf7f2] text-zinc-600 hover:bg-zinc-200 border border-zinc-200/80'
                     }`}
@@ -130,8 +144,8 @@ function ToursContent() {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all whitespace-nowrap ${
-                  selectedCategory === cat
+                className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all whitespace-nowrap cursor-pointer ${
+                  selectedCategory.toLowerCase() === cat.toLowerCase()
                     ? 'bg-[#062319] text-[#c5a880] shadow-md border border-[#c5a880]/40'
                     : 'bg-[#faf7f2] text-zinc-600 hover:bg-zinc-100 border border-zinc-200/80'
                 }`}

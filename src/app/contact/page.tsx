@@ -246,15 +246,13 @@ export default function ContactPage() {
               </h4>
               <p className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-[#3f6653] shrink-0 mt-0.5" />
-                <span>Senggigi, Lombok, Nusa Tenggara Barat, Indonesia 83355</span>
+                <span>Senggigi, Lombok, West Nusa Tenggara, Indonesia</span>
               </p>
               <p className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-[#3f6653] shrink-0" />
-                <span>+62 (0) 812-3456-7890</span>
-              </p>
-              <p className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-[#3f6653] shrink-0" />
-                <span>info@lomboktravelasia.com</span>
+                <MessageCircle className="w-4 h-4 text-[#3f6653] shrink-0" />
+                <a href={directWaUrl} target="_blank" rel="noopener noreferrer" className="text-[#012d1d] font-semibold hover:underline">
+                  WhatsApp Direct Inquiry
+                </a>
               </p>
             </div>
           </div>

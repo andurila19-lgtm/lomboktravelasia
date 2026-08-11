@@ -17,60 +17,75 @@ export default function AboutPage() {
       <div className="bg-[#012d1d] text-white py-16 px-4 sm:px-6 lg:px-8 mb-16 border-b border-[#1b4332]">
         <div className="max-w-5xl mx-auto text-center space-y-4">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1b4332] text-[#86af99] text-xs font-semibold uppercase tracking-wider">
-            <span>{dict.nav.about}</span>
+            <span>About Lombok Travel Asia</span>
           </div>
           <h1 className="font-serif text-4xl sm:text-6xl font-bold tracking-tight">
-            {dict.about.pageTitle}
+            About Lombok Travel Asia
           </h1>
           <p className="max-w-3xl mx-auto text-zinc-300 text-base sm:text-lg font-light leading-relaxed">
-            {dict.about.storyText}
+            Travel experiences across Lombok and the surrounding islands.
           </p>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
-        {/* Core Pillars */}
+        {/* What We Offer Section */}
         <div className="space-y-8">
           <div className="text-center max-w-2xl mx-auto">
+            <span className="text-xs font-bold text-[#012d1d] uppercase tracking-[0.2em] block mb-1">
+              Services
+            </span>
             <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#012d1d]">
-              {dict.about.whyChooseUs}
+              What We Offer
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-3xl border border-zinc-200 shadow-sm space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#1b4332] text-[#86af99] flex items-center justify-center">
-                <Compass className="w-6 h-6" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="bg-white p-6 rounded-3xl border border-zinc-200 shadow-sm space-y-3">
+              <div className="w-10 h-10 rounded-2xl bg-[#1b4332] text-[#86af99] flex items-center justify-center">
+                <Compass className="w-5 h-5" />
               </div>
-              <h3 className="font-serif text-xl font-bold text-[#012d1d]">
-                {dict.about.localExpertise}
+              <h3 className="font-serif text-lg font-bold text-[#012d1d]">
+                Travel Experiences
               </h3>
-              <p className="text-sm text-zinc-600 leading-relaxed font-light">
-                {dict.about.localExpertiseDesc}
+              <p className="text-xs text-zinc-600 leading-relaxed font-light">
+                Curated itineraries showcasing Lombok&apos;s beaches, culture, and islands.
               </p>
             </div>
 
-            <div className="bg-white p-8 rounded-3xl border border-zinc-200 shadow-sm space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#1b4332] text-[#86af99] flex items-center justify-center">
-                <ShieldCheck className="w-6 h-6" />
+            <div className="bg-white p-6 rounded-3xl border border-zinc-200 shadow-sm space-y-3">
+              <div className="w-10 h-10 rounded-2xl bg-[#1b4332] text-[#86af99] flex items-center justify-center">
+                <ShieldCheck className="w-5 h-5" />
               </div>
-              <h3 className="font-serif text-xl font-bold text-[#012d1d]">
-                {dict.about.safety}
+              <h3 className="font-serif text-lg font-bold text-[#012d1d]">
+                Private Tours
               </h3>
-              <p className="text-sm text-zinc-600 leading-relaxed font-light">
-                {dict.about.safetyDesc}
+              <p className="text-xs text-zinc-600 leading-relaxed font-light">
+                Exclusive vehicle transfers, private boats, and dedicated local guides for your group.
               </p>
             </div>
 
-            <div className="bg-white p-8 rounded-3xl border border-zinc-200 shadow-sm space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#1b4332] text-[#86af99] flex items-center justify-center">
-                <HeartHandshake className="w-6 h-6" />
+            <div className="bg-[#012d1d] text-white p-6 rounded-3xl border border-[#1b4332] shadow-sm space-y-3">
+              <div className="w-10 h-10 rounded-2xl bg-[#1b4332] text-[#86af99] flex items-center justify-center">
+                <Sparkles className="w-5 h-5" />
               </div>
-              <h3 className="font-serif text-xl font-bold text-[#012d1d]">
-                {dict.about.sustainable}
+              <h3 className="font-serif text-lg font-bold text-white">
+                Custom Trips
               </h3>
-              <p className="text-sm text-zinc-600 leading-relaxed font-light">
-                {dict.about.sustainableDesc}
+              <p className="text-xs text-zinc-300 leading-relaxed font-light">
+                Tailored multi-day schedules built around your personal timeline and interests.
+              </p>
+            </div>
+
+            <div className="bg-white p-6 rounded-3xl border border-zinc-200 shadow-sm space-y-3">
+              <div className="w-10 h-10 rounded-2xl bg-[#1b4332] text-[#86af99] flex items-center justify-center">
+                <HeartHandshake className="w-5 h-5" />
+              </div>
+              <h3 className="font-serif text-lg font-bold text-[#012d1d]">
+                Adventure Expeditions
+              </h3>
+              <p className="text-xs text-zinc-600 leading-relaxed font-light">
+                Mount Rinjani summit treks, waterfall hikes, and secret island snorkeling trips.
               </p>
             </div>
           </div>

@@ -197,7 +197,7 @@ export default async function DestinationDetailPage({
               className="w-full sm:w-auto h-13 px-8 bg-white/90 backdrop-blur-md text-[#012d1d] font-semibold text-xs uppercase tracking-widest rounded-full border border-zinc-300 flex items-center justify-center gap-2 hover:bg-white transition-colors"
             >
               <MessageCircle className="w-4 h-4 text-[#25D366] fill-current" />
-              <span>Ask Us on WhatsApp</span>
+              <span>Plan a Trip Here</span>
             </a>
           </div>
         </div>
@@ -463,7 +463,7 @@ export default async function DestinationDetailPage({
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#25D366] text-black font-bold text-xs uppercase tracking-wider hover:bg-emerald-400 transition-all shadow-xl"
             >
               <MessageCircle className="w-4 h-4 fill-current text-black" />
-              <span>Chat on WhatsApp Us</span>
+              <span>Plan a Trip Here</span>
             </a>
           </div>
         </div>

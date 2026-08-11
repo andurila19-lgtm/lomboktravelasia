@@ -121,44 +121,48 @@ export default function Footer() {
                 <span>Senggigi, Lombok, West Nusa Tenggara, Indonesia</span>
               </li>
               <li className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-[#c5a880] shrink-0" />
-                <a href={waUrl} target="_blank" rel="noopener noreferrer" className="hover:text-[#c5a880]">
-                  +62 (0) 812-3456-7890
+                <MessageCircle className="w-4 h-4 text-[#c5a880] shrink-0" />
+                <a href={waUrl} target="_blank" rel="noopener noreferrer" className="hover:text-[#c5a880] font-medium text-[#c5a880]">
+                  WhatsApp Consultation
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-[#c5a880] shrink-0" />
-                <a href="mailto:info@lomboktravelasia.com" className="hover:text-[#c5a880]">
-                  info@lomboktravelasia.com
-                </a>
+                <Link href="/contact" className="hover:text-[#c5a880]">
+                  Send Inquiry Form
+                </Link>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Client Trust Badges for Pitch Demonstration */}
+        {/* Safe Presentation Trust Drivers */}
         <div className="py-8 my-4 border-y border-white/10 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           <div className="flex flex-col items-center gap-1">
-            <span className="text-xs font-bold text-[#c5a880] uppercase tracking-wider">✓ Certified Guides</span>
-            <span className="text-[11px] text-zinc-400 font-light">100% licensed local experts</span>
+            <span className="text-xs font-bold text-[#c5a880] uppercase tracking-wider">✓ Local Lombok Team</span>
+            <span className="text-[11px] text-zinc-400 font-light">Island routes & guides</span>
           </div>
           <div className="flex flex-col items-center gap-1">
-            <span className="text-xs font-bold text-[#c5a880] uppercase tracking-wider">✓ Official Operator</span>
-            <span className="text-[11px] text-zinc-400 font-light">Licensed Lombok Tour Agency</span>
+            <span className="text-xs font-bold text-[#c5a880] uppercase tracking-wider">✓ Private & Custom Trips</span>
+            <span className="text-[11px] text-zinc-400 font-light">Flexible travel planning</span>
           </div>
           <div className="flex flex-col items-center gap-1">
-            <span className="text-xs font-bold text-[#c5a880] uppercase tracking-wider">✓ Instant WA Booking</span>
-            <span className="text-[11px] text-zinc-400 font-light">24/7 direct concierge chat</span>
+            <span className="text-xs font-bold text-[#c5a880] uppercase tracking-wider">✓ Direct WhatsApp Inquiry</span>
+            <span className="text-[11px] text-zinc-400 font-light">Fast trip consultation</span>
           </div>
           <div className="flex flex-col items-center gap-1">
-            <span className="text-xs font-bold text-[#c5a880] uppercase tracking-wider">✓ Flexible Guarantees</span>
-            <span className="text-[11px] text-zinc-400 font-light">Transparent booking terms</span>
+            <span className="text-xs font-bold text-[#c5a880] uppercase tracking-wider">✓ Tailored Itineraries</span>
+            <span className="text-[11px] text-zinc-400 font-light">Designed around your plans</span>
           </div>
         </div>
 
-        {/* Bottom Bar */}
+        {/* Bottom Bar & Brand Safety Demo Notice */}
         <div className="pt-4 flex flex-col md:flex-row items-center justify-between text-xs text-zinc-400 gap-4">
-          <p>© {new Date().getFullYear()} {dict.footer.copyright}</p>
+          <div className="flex flex-col md:flex-row items-center gap-2">
+            <p>© {new Date().getFullYear()} {dict.footer.copyright}</p>
+            <span className="hidden md:inline text-zinc-600">•</span>
+            <span className="text-[11px] text-zinc-500 font-normal">Lombok Travel Asia — Interactive Sales Concept Demo</span>
+          </div>
           <p className="flex items-center gap-1">
             Handcrafted with <Heart className="w-3.5 h-3.5 text-[#c5a880] fill-current" /> in Lombok
           </p>

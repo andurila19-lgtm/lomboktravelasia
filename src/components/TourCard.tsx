@@ -65,10 +65,8 @@ export default function TourCard({ tour }: TourCardProps) {
             {difficultyLabels[tour.difficulty]}
           </span>
 
-          <div className="flex items-center gap-1 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-xs font-bold text-[#c5a880]">
-            <Star className="w-3.5 h-3.5 fill-current text-[#c5a880]" />
-            <span>{tour.rating}</span>
-            <span className="text-zinc-400 font-normal">({tour.reviewCount})</span>
+          <div className="flex items-center gap-1 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-bold uppercase tracking-wider text-[#c5a880]">
+            <span>{locale === 'id' ? 'Pengalaman Lokal' : 'Local Experience'}</span>
           </div>
         </div>
 
@@ -111,10 +109,18 @@ export default function TourCard({ tour }: TourCardProps) {
             <span className="block text-[9px] font-bold text-zinc-400 uppercase tracking-wider">
               {dict.tours.startingFrom}
             </span>
-            <span className="text-lg font-bold text-[#062319]">
-              {formatCurrency(tour.price.amount, tour.price.currency)}
-            </span>
-            <span className="text-[11px] text-zinc-400 font-light"> {dict.tours.perPerson}</span>
+            {tour.price.placeholder ? (
+              <span className="text-sm font-bold text-[#062319] block mt-0.5">
+                {dict.tours.contactForPricing}
+              </span>
+            ) : (
+              <>
+                <span className="text-lg font-bold text-[#062319]">
+                  {formatCurrency(tour.price.amount, tour.price.currency)}
+                </span>
+                <span className="text-[11px] text-zinc-400 font-light"> {dict.tours.perPerson}</span>
+              </>
+            )}
           </div>
 
           <div className="flex items-center gap-2">
@@ -122,10 +128,11 @@ export default function TourCard({ tour }: TourCardProps) {
               href={waUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2.5 rounded-full bg-[#062319] text-[#c5a880] hover:bg-[#c5a880] hover:text-[#062319] transition-all shadow-md"
-              title={dict.cta.whatsappToBook}
+              className="px-3 py-2 rounded-full bg-[#062319] text-[#c5a880] hover:bg-[#c5a880] hover:text-[#062319] transition-all shadow-md flex items-center gap-1.5 text-xs font-bold"
+              title={locale === 'id' ? 'Tanya di WhatsApp' : 'Ask on WhatsApp'}
             >
-              <MessageCircle className="w-4 h-4 fill-current" />
+              <MessageCircle className="w-3.5 h-3.5 fill-current" />
+              <span className="hidden sm:inline">{locale === 'id' ? 'Tanya' : 'Ask'}</span>
             </a>
             <Link
               href={`/tours/${tour.slug}`}

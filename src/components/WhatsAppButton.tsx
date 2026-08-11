@@ -28,7 +28,7 @@ export default function WhatsAppButton() {
           </div>
           <div className="flex flex-col text-left">
             <span className="text-[10px] font-bold uppercase tracking-wider text-[#c5a880]">
-              Lombok Concierge
+              Lombok Travel Team
             </span>
             <span className="text-xs font-semibold text-white group-hover:text-[#c5a880] transition-colors">
               Chat on WhatsApp
