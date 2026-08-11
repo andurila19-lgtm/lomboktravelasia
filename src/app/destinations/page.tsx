@@ -19,7 +19,6 @@ const categories: Array<{ id: 'All' | DestinationCategory; label: string }> = [
 ];
 
 export default function DestinationsIndexPage() {
-  const { locale } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState<'All' | DestinationCategory>('All');
 
   // Client-side category filtering

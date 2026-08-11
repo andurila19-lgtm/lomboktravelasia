@@ -10,15 +10,11 @@ import TourCard from '@/components/TourCard';
 import { getWhatsAppUrl } from '@/lib/whatsapp';
 import {
   ChevronRight,
-  MapPin,
   Compass,
   MessageCircle,
   ArrowRight,
   HelpCircle,
-  Info,
   CheckCircle,
-  Sun,
-  ShieldAlert,
 } from 'lucide-react';
 
 interface DestinationPageProps {

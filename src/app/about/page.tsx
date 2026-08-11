@@ -2,9 +2,8 @@
 
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useLanguage } from '@/components/LanguageContext';
-import { Compass, ShieldCheck, HeartHandshake, Sparkles, MapPin, Mail, MessageCircle, ArrowRight } from 'lucide-react';
+import { Compass, ShieldCheck, HeartHandshake, Sparkles, MapPin, MessageCircle } from 'lucide-react';
 import { getWhatsAppUrl } from '@/lib/whatsapp';
 
 export default function AboutPage() {

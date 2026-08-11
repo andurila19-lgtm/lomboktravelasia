@@ -7,7 +7,7 @@ import { z } from 'zod';
 import { useLanguage } from '@/components/LanguageContext';
 import { getWhatsAppUrl } from '@/lib/whatsapp';
 import { trackEvent } from '@/lib/analytics';
-import { Sparkles, MessageCircle, Phone, Mail, MapPin, CheckCircle2 } from 'lucide-react';
+import { MessageCircle, MapPin, CheckCircle2 } from 'lucide-react';
 
 const contactSchema = z.object({
   fullName: z.string().min(2, 'This field is required'),

@@ -10,9 +10,6 @@ import { getWhatsAppUrl } from '@/lib/whatsapp';
 import {
   Compass,
   Search,
-  MapPin,
-  Users,
-  Calendar,
   ShieldCheck,
   UserCheck,
   ArrowRight,
