@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* === Bespoke Luxury Lombok Palette === */
+  --color-primary: #062319;
+  --color-[#062319]: #062319;
+  --color-gold: #c5a880;
+  --color-gold-light: #e5d4bc;
+  --color-sand-canvas: #faf7f2;
+  --color-sand-card: #f4efea;
+  --color-forest-deep: #03140e;
+  --color-forest-container: #0d3829;
+  --color-forest-light: #1c523f;
+  --color-accent-emerald: #86af99;
+
+  /* === Typography === */
+  --font-display: var(--font-playfair);
+  --font-body: var(--font-sans);
+}
+
+/* === Custom Luxury Base Styling === */
+body {
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #faf7f2;
+  color: #1a221f;
+}
+
+/* Luxury Editorial Typography utilities */
+.font-serif {
+  font-family: var(--font-playfair), Georgia, serif;
+}
+.font-sans {
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Subtle Glassmorphism Blur */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(197, 168, 128, 0.25);
+}
+
+.glass-panel-dark {
+  background: rgba(6, 35, 25, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(197, 168, 128, 0.2);
+}
+
+/* Custom Scrollbars */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Global Reset for Native Browser Focus Outlines */
+input, select, textarea, button {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+input:focus, select:focus, textarea:focus, button:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Smooth Focus States */
+*:focus-visible {
+  outline: 2px solid #012d1d;
+  outline-offset: 2px;
+}
